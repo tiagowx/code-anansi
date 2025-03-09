@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
-import {  Box, Card, Image } from '@chakra-ui/react';
-import { IChampion } from '@/interfaces/IChampion';
+import { Box,  Collapsible, Image, Text } from '@chakra-ui/react';
+import Stats from './stats';
+import Spells from './spells';
+import Passive from './passive';
+import Items from './items';
 
 
 const Champion = () => {
-    const [champion, setChampion] = useState<IChampion>({
+    const champion = {
         "id": "Aatrox",
         "key": "266",
         "name": "Aatrox",
@@ -140,7 +142,8 @@ const Champion = () => {
             "attackdamage": 60,
             "attackdamageperlevel": 5,
             "attackspeedperlevel": 2.5,
-            "attackspeed": 0.651
+            "attackspeed": 0.651,
+            "abilityPower": 0
         },
         "spells": [
             {
@@ -408,18 +411,32 @@ const Champion = () => {
             }
         },
         "recommended": []
-    }
-    );
+    };
+
+    const cdnUrl = "https://ddragon.leagueoflegends.com/cdn/15.5.1/img/champion/"
 
     return (
         <Box>
-            <Card.Root>
-                <Image src={`https://ddragon.leagueoflegends.com/cdn/15.5.1/img/champion/${champion.image.full}`} alt={champion.name} />
-                <Card.Body>
-                    <Card.Title>{champion.name}</Card.Title>
-                </Card.Body>
-            </Card.Root>
-        </Box>
+            <Collapsible.Root bg="white" color="black"  rounded="md" p={2}>
+                <Collapsible.Trigger bg="white" >
+                    <Box display="flex" gap={2}>
+                        <Box>
+                            <Image src={`${cdnUrl}${champion.image.full}`} alt={champion.name} />
+                            <Text>{champion.name}</Text>
+                        </Box>
+                        <Stats stats={champion.stats} />
+                    </Box>
+                </Collapsible.Trigger>
+                <Collapsible.Content  textAlign="left" >
+                    <Passive passive={champion.passive} />
+                    <Box display="flex" w="100%">
+                        <Spells passive={champion.passive} spells={champion.spells} />
+                        <Items />
+                    </Box>
+                </Collapsible.Content>
+
+            </Collapsible.Root>
+        </Box >
     )
 }
 

@@ -19,4 +19,6 @@ export interface IStats {
     attackdamageperlevel: number;
     attackspeedperlevel: number;
     attackspeed: number;
+    abilityPower?: number;
+    cdr?: number;
   }

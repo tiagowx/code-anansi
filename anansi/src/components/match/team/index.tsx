@@ -1,10 +1,11 @@
-import { Box } from '@chakra-ui/react'
-import React from 'react'
-import Champion from './champion'
+import { Box } from '@chakra-ui/react';
+import Champion from './champion';
 
 const Team = () => {
+
   return (
-    <Box justifyContent="center" display="flex" flexDirection="column">
+    <Box display="flex" justifyContent="center"flexDirection="column">
+      {/* //caixa de seleçao */}
         <Champion key="top"/>
     </Box>
   )
