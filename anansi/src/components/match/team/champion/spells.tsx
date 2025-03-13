@@ -32,7 +32,7 @@ const Spells = (props: Props) => {
                                 Tempo de re-uso: {spell.cooldownBurn}
                             </Text>
                             <Text textStyle="xs">
-                                Custo: {spell.costType}
+                                Custo: {spell.cost.join("|")}
                             </Text>
                         </Box>
                     </Box>
